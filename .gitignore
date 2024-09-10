@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/build
+/src/MarBasAPI/Data/*
+!/src/MarBasAPI/Data/.gitkeep
+*.user
+MarBasBrokerEnginesDebug.sln
+/srcdbg
+
+.fake
+.DS_Store
+nuget.config

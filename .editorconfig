@@ -1,0 +1,7 @@
+[*.Designer.cs] # Workaround for https://github.com/dotnet/roslyn/issues/53729
+dotnet_diagnostic.CS1570.severity = none
+dotnet_diagnostic.CS1587.severity = none
+[*Controller.cs]
+dotnet_diagnostic.CA1822.severity = none
+[*.{cs,vb}]
+dotnet_diagnostic.IDE0063.severity = none # Applying the rule produces wrong lifetime of disposables and sometimes even uncompilable code

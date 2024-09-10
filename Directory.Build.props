@@ -1,0 +1,14 @@
+<Project>
+    <PropertyGroup>
+        <BaseOutputPath>$(MSBuildThisFileDirectory)build</BaseOutputPath>
+        <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)build/intermed/$(MSBuildProjectName)</BaseIntermediateOutputPath>
+        <!--
+        <OutDir>$(OutputPath)</OutDir>
+        <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+        <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+        <MSBuildProjectExtensionsPath>$(MSBuildThisFileDirectory)build/obj/$(MSBuildProjectName)</MSBuildProjectExtensionsPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        -->
+    </PropertyGroup>
+</Project>

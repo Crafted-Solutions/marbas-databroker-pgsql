@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+    <PropertyGroup>
+        <Product>MarBas Databroker (PostgreSQL Engine)</Product>
+        <Company>MarBas</Company>
+        <Copyright>© 2024</Copyright>
+        <PackageProjectUrl>https://github.com/orgs/Crafted-Solutions/projects/1</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Crafted-Solutions/marbas-databroker-pgsql</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Authors>marbasteam</Authors>
+    </PropertyGroup>
+</Project>
