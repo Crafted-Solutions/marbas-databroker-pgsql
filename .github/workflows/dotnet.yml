@@ -35,6 +35,7 @@ jobs:
       run: dotnet nuget add source https://nuget.pkg.github.com/Crafted-Solutions/index.json -n cs -u ${NUGET_USER} -p ${NUGET_TOKEN} --store-password-in-clear-text
       env:
         NUGET_TOKEN: ${{ secrets.PACKAGE_READ_TOKEN }}
+        NUGET_USER: ${{ vars.NUGET_USER }}
     - name: Extract branch name
       run: echo "PR_TARGET_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
       id: extract_branch
