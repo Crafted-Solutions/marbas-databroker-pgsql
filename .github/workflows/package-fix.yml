@@ -29,6 +29,7 @@ jobs:
       run: dotnet nuget add source https://nuget.pkg.github.com/Crafted-Solutions/index.json -n cs -u ${NUGET_USER} -p ${NUGET_TOKEN} --store-password-in-clear-text
       env:
         NUGET_TOKEN: ${{ secrets.PACKAGE_READ_TOKEN }}
+        NUGET_USER: ${{ vars.NUGET_USER }}
     - name: Build
       run: dotnet build -c Release /p:Version=${VERSION}
     - name: Test
