@@ -19,7 +19,7 @@
     </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MarBasBrokerSQLCommon" Version="0.1.15-dev02" />
+    <PackageReference Include="MarBasBrokerSQLCommon" Version="0.1.15" />
     <PackageReference Include="Npgsql" Version="8.0.3" />
   </ItemGroup>
 
