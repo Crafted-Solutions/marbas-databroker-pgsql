@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Version>0.1.15</Version>
+        <Version>0.1.15.1</Version>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <Description>Sample Web API application for MarBas databroker</Description>
     </PropertyGroup>
@@ -18,8 +18,8 @@
     </PropertyGroup>
 
    <ItemGroup>
-    <PackageReference Include="MarBasAPICore" Version="0.1.15" />
-    <PackageReference Include="NuGet.Configuration" Version="6.11.0" />
+    <PackageReference Include="MarBasAPICore" Version="0.1.15.1" />
+    <PackageReference Include="NuGet.Configuration" Version="6.11.1" />
   </ItemGroup>
 
    <ItemGroup>
