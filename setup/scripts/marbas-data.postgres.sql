@@ -1,4 +1,4 @@
-INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.12');
+INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.13');
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.mtime', to_char(now()::timestamp at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"'));
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.status', 'stable');
 INSERT INTO mb_schema_opts (name, val) VALUES ('instace.id', CAST(gen_random_uuid() as text));
@@ -68,10 +68,10 @@ INSERT INTO mb_typedef_mixin (base_typedef_id, derived_typedef_id) VALUES ('0000
 INSERT INTO mb_typedef_mixin (base_typedef_id, derived_typedef_id) VALUES ('00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-00000000000b');
 
 /* Data for table mb_propdef */
-INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, value_constraint) VALUES ('4f3cf6bf-89fe-43aa-8ac5-0068be6d9e3a', 'text', 1, 1, NULL);
-INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, value_constraint) VALUES ('557a4274-9c24-4b38-91c2-b6603b3647d9', 'memo', 1, 1, NULL);
-INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, value_constraint) VALUES ('e8b87a2d-4154-4f37-b16d-f8781870ad84', 'file', 1, 1, NULL);
-INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, value_constraint) VALUES ('00000000-0000-1000-a000-00000000000d', 'text', 1, 1, NULL);
+INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('4f3cf6bf-89fe-43aa-8ac5-0068be6d9e3a', 'text', 1, 1, TRUE);
+INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('557a4274-9c24-4b38-91c2-b6603b3647d9', 'memo', 1, 1, TRUE);
+INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('e8b87a2d-4154-4f37-b16d-f8781870ad84', 'file', 1, 1, FALSE);
+INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('00000000-0000-1000-a000-00000000000d', 'text', 1, 1, TRUE);
 
 /* Data for table mb_grain_trait */
 INSERT INTO mb_grain_trait (id, grain_id, propdef_id, lang_code, ord, val_boolean, val_text, val_number, val_memo, val_guid) VALUES ('ce1d23e8-1ed6-4837-8ecc-35694513a7eb', 'f5a20495-400d-4584-b75f-211500026b0b', '557a4274-9c24-4b38-91c2-b6603b3647d9', 'en', 0, FALSE, NULL, NULL, 'Sed sit amet mi dignissim, interdum ligula in, viverra magna. Vivamus ac enim eu odio volutpat porttitor non sit amet nibh. Morbi id lectus nibh. Quisque ut quam ut sapien volutpat commodo eu sed augue. Donec varius ipsum mi, at finibus felis mattis vitae. Nunc accumsan eros nec nisi pretium, quis facilisis enim suscipit. Donec nisi libero, auctor ac congue et, congue eget ipsum. Aenean bibendum tempus tortor vel pellentesque. Fusce vel pharetra diam, sit amet ullamcorper arcu. Nullam auctor velit eu sem mollis, id facilisis leo facilisis. Donec id leo ac mi lacinia commodo et et nunc. Ut luctus diam eget nibh molestie, et dictum lorem consequat. ', NULL);
