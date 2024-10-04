@@ -12,6 +12,8 @@ namespace MarBasBrokerEnginePgSQL
 
         public string SignedToUnsigned(string numberExpression) => $"(CAST({numberExpression} AS bigint) & 0xffffffff)";
 
+        public string ConflictExcluded(string fieldName) => $"excluded.{fieldName}";
+
         public string NewBlobContent(string? sizeParam = null) => $"lo_creat(-1)";
 
         public bool BlobUpdateRequiresReset => false;
