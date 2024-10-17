@@ -707,6 +707,17 @@ CREATE INDEX mb_idx_grain_acl_restrictions
   ON mb_grain_acl
   (restriction_mask);
 
+CREATE TRIGGER mb_tg_grain_acl_update_mtime
+  AFTER INSERT OR UPDATE
+  ON mb_grain_acl
+  FOR EACH ROW
+EXECUTE PROCEDURE mb_set_grain_ref_mtime();
+
+CREATE TRIGGER mb_tg_grain_acl_delete_mtime
+  AFTER DELETE
+  ON mb_grain_acl
+  FOR EACH ROW
+EXECUTE PROCEDURE mb_set_grain_ref_mtime();
 
 /* Views */
 /* mb_grain_with_path */
