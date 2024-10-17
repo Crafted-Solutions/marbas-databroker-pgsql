@@ -1,4 +1,4 @@
-INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.13');
+INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.14');
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.mtime', to_char(now()::timestamp at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"'));
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.status', 'stable');
 INSERT INTO mb_schema_opts (name, val) VALUES ('instace.id', CAST(gen_random_uuid() as text));
