@@ -780,9 +780,12 @@ LEFT JOIN mb_grain_base AS d
 /* mb_propdef_as_grain_with_path */
 CREATE VIEW mb_propdef_as_grain_with_path
 AS
-SELECT p.*, g.* FROM mb_propdef AS p
+SELECT p.*, g.*, b.name AS parent_name, b.sort_key AS parent_sort_key
+FROM mb_propdef AS p
 LEFT JOIN mb_grain_with_path AS g
-    ON g.id = p.base_id;
+ON g.id = p.base_id
+LEFT JOIN mb_grain_base AS b
+ON b.id = g.parent_id;
 
 /* mb_typedef_mixin_ancestor */
 CREATE VIEW mb_typedef_mixin_ancestor
