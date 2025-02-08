@@ -30,7 +30,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
     - name: Add GitHub package source
       run: dotnet nuget add source https://nuget.pkg.github.com/Crafted-Solutions/index.json -n cs -u ${NUGET_USER} -p ${NUGET_TOKEN} --store-password-in-clear-text
       env:

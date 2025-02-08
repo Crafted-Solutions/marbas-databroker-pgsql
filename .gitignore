@@ -6,6 +6,8 @@
 /build
 /src/MarBasAPI/Data/*
 !/src/MarBasAPI/Data/.gitkeep
+/src/MarBasAPI/wwwroot/*
+!/src/MarBasAPI/wwwroot/.gitkeep
 *.user
 MarBasBrokerEnginesDebug.sln
 /srcdbg
