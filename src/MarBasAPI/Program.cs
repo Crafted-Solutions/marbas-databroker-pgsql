@@ -66,6 +66,11 @@ namespace MarBasAPI
 			app.UseAuthentication();
 			app.UseAuthorization();
 
+            if (builder.Configuration.GetValue<bool>("StaticFiles:Enabled", false))
+            {
+                app.UseStaticFiles();
+            }
+
             app.MapControllers();
 			
             app.Run();
