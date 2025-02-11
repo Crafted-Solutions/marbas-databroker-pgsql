@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "filesystem",
+      "library": "../../../marbas-silo/dist",
+      "destination": "wwwroot/silo/"
+    }
+  ]
+}

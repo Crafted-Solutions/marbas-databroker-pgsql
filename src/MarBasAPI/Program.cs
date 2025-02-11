@@ -23,6 +23,7 @@ namespace MarBasAPI
                 );
             var bootstrapLogger = loggerFactory.CreateLogger<Program>();
 
+            builder.Services.ConfigureMarBasTimeouts(builder.Configuration.GetSection("RequestTimeouts"));
             builder.Services.ConfigureMarBasControllers();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -46,6 +47,7 @@ namespace MarBasAPI
             }
 
             var app = builder.Build();
+            app.UseRequestTimeouts();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -65,6 +67,11 @@ namespace MarBasAPI
             }
 			app.UseAuthentication();
 			app.UseAuthorization();
+
+            if (builder.Configuration.GetValue<bool>("StaticFiles:Enabled", false))
+            {
+                app.UseStaticFiles();
+            }
 
             app.MapControllers();
 			
