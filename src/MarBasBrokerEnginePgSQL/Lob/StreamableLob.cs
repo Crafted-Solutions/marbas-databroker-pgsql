@@ -70,13 +70,11 @@ namespace MarBasBrokerEnginePgSQL.Lob
             {
                 if (disposing)
                 {
+                     _stream?.Dispose();
                     var conn = _transaction?.Connection;
                     _transaction?.Dispose();
                     _context?.Dispose();
-                    if (null != conn && ConnectionState.Open == conn.State)
-                    {
-                        conn.Dispose();
-                    }
+                    conn?.Dispose();
                 }
                 _disposed = true;
             }
