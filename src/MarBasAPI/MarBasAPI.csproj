@@ -18,7 +18,7 @@
     </PropertyGroup>
 
    <ItemGroup>
-    <PackageReference Include="MarBasAPICore" Version="0.1.16-dev01" />
+    <PackageReference Include="MarBasAPICore" Version="0.1.16" />
     <PackageReference Include="NuGet.Configuration" Version="6.12.1" />
   </ItemGroup>
 
