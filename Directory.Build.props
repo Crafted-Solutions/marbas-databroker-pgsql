@@ -1,5 +1,6 @@
 <Project>
     <PropertyGroup>
+        <RootNamespace>CraftedSolutions.$(MSBuildProjectName)</RootNamespace>
         <BaseOutputPath>$(MSBuildThisFileDirectory)build</BaseOutputPath>
         <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)build/intermed/$(MSBuildProjectName)</BaseIntermediateOutputPath>
         <!--

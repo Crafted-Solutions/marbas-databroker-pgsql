@@ -6,8 +6,10 @@ name: .NET Build And Test
 on:
   push:
     branches: [ "main", "develop" ]
+    paths: [ "*.sln", "*.props", "src/**", "test/**", ".github/workflows/**" ]
   pull_request:
     branches: [ "main", "develop" ]
+    paths: [ "*.sln", "*.props", "src/**", "test/**", ".github/workflows/**" ]
   workflow_dispatch:
     inputs:
       logLevel:
@@ -31,11 +33,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Add GitHub package source
-      run: dotnet nuget add source https://nuget.pkg.github.com/Crafted-Solutions/index.json -n cs -u ${NUGET_USER} -p ${NUGET_TOKEN} --store-password-in-clear-text
-      env:
-        NUGET_TOKEN: ${{ secrets.PACKAGE_READ_TOKEN }}
-        NUGET_USER: ${{ vars.NUGET_USER }}
     - name: Extract branch name
       run: echo "PR_TARGET_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
       id: extract_branch
@@ -45,8 +42,3 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Cleanup
-      if: always()
-      continue-on-error: true
-      run: |
-        dotnet nuget remove source cs
