@@ -1,13 +1,13 @@
 ﻿using System.Data.Common;
 using System.Globalization;
-using MarBasBrokerSQLCommon;
-using MarBasCommon;
-using MarBasCommon.Reflection;
-using MarBasSchema;
+using CraftedSolutions.MarBasBrokerSQLCommon;
+using CraftedSolutions.MarBasCommon;
+using CraftedSolutions.MarBasCommon.Reflection;
+using CraftedSolutions.MarBasSchema;
 using Npgsql;
 using NpgsqlTypes;
 
-namespace MarBasBrokerEnginePgSQL
+namespace CraftedSolutions.MarBasBrokerEnginePgSQL
 {
     public sealed class PgSQLParameterFactory : AbstractDbParameterFactory<PgSQLParameterFactory>
     {
@@ -44,7 +44,7 @@ namespace MarBasBrokerEnginePgSQL
             {
                 result = new NpgsqlParameter(name, NpgsqlDbType.Integer)
                 {
-                    Value = (Int32?)value?.CastToReflected(Enum.GetUnderlyingType(effectiveType))
+                    Value = (int?)value?.CastToReflected(Enum.GetUnderlyingType(effectiveType))
                 };
             }
             else
@@ -80,7 +80,7 @@ namespace MarBasBrokerEnginePgSQL
             }
             else if (typeof(Enum).IsAssignableFrom(effectiveType))
             {
-                result.Value = (Int32?)value?.CastToReflected(Enum.GetUnderlyingType(effectiveType));
+                result.Value = (int?)value?.CastToReflected(Enum.GetUnderlyingType(effectiveType));
             }
             else
             {

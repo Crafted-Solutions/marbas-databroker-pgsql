@@ -1,10 +1,10 @@
-using MarBasAPICore.Extensions;
-using MarBasAPICore.Http;
-using MarBasAPICore.Routing;
+using CraftedSolutions.MarBasAPICore.Extensions;
+using CraftedSolutions.MarBasAPICore.Http;
+using CraftedSolutions.MarBasAPICore.Routing;
 using Microsoft.AspNetCore.Authentication;
 using NuGet.Configuration;
 
-namespace MarBasAPI
+namespace CraftedSolutions.MarBasAPI
 {
     public class Program
     {
@@ -17,7 +17,7 @@ namespace MarBasAPI
             {
                 options.ConstraintMap.Add("DownloadDisposition", typeof(DownloadDispositionRouteConstraint));
             });
-            
+
             using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder.AddConfiguration(
                 builder.Configuration.GetSection("Logging")).AddConsole().AddDebug().AddEventSourceLogger()
                 );
@@ -31,7 +31,7 @@ namespace MarBasAPI
             DeployAPIDocsIdNeeded(bootstrapLogger);
             builder.Services.ConfigureMarBasSwagger(builder.Environment.IsDevelopment(), options =>
             {
-                options.IncludeXmlComments(Path.Combine(System.AppContext.BaseDirectory, $"{nameof(MarBasAPI)}.xml"));
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{nameof(MarBasAPI)}.xml"));
             });
             if (builder.Environment.IsDevelopment())
             {
@@ -60,27 +60,27 @@ namespace MarBasAPI
             }
 
             app.UseHttpsRedirection();
-			
+
             if (corsEnabled)
             {
                 app.UseCors();
             }
-			app.UseAuthentication();
-			app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-            if (builder.Configuration.GetValue<bool>("StaticFiles:Enabled", false))
+            if (builder.Configuration.GetValue("StaticFiles:Enabled", false))
             {
                 app.UseStaticFiles();
             }
 
             app.MapControllers();
-			
+
             app.Run();
         }
 
         private static void DeployAPIDocsIdNeeded(ILogger logger)
         {
-            var coreDocs = Path.Combine(System.AppContext.BaseDirectory, $"{nameof(MarBasAPICore)}.xml");
+            var coreDocs = Path.Combine(AppContext.BaseDirectory, $"{nameof(MarBasAPICore)}.xml");
             if (File.Exists(coreDocs))
             {
                 return;
@@ -97,7 +97,7 @@ namespace MarBasAPI
             var nugetPath = SettingsUtility.GetGlobalPackagesFolder(Settings.LoadDefaultSettings(null));
             var pkgDir = nameof(MarBasAPICore).ToLowerInvariant();
 
-            var verParts = new List<int>(){ ver.Major, ver.Minor, ver.Build, ver.Revision };
+            var verParts = new List<int>() { ver.Major, ver.Minor, ver.Build, ver.Revision };
             string pkgPath;
             do
             {
@@ -105,18 +105,18 @@ namespace MarBasAPI
                 verParts.RemoveAt(verParts.Count - 1);
             }
             while (verParts.Any() && !Directory.Exists(pkgPath));
-            if (!System.IO.Directory.Exists(pkgPath))
+            if (!Directory.Exists(pkgPath))
             {
                 logger.LogError("Cannot find package at {pkgPath}", pkgPath);
                 return;
             }
-            foreach (var xmlPath in System.IO.Directory.GetFiles(pkgPath, "*.xml", SearchOption.AllDirectories))
+            foreach (var xmlPath in Directory.GetFiles(pkgPath, "*.xml", SearchOption.AllDirectories))
             {
                 if (logger.IsEnabled(LogLevel.Information))
                 {
                     logger.LogInformation("Deploying API docs {xmlPath}", xmlPath);
                 }
-                System.IO.File.Copy(xmlPath, Path.Combine(System.AppContext.BaseDirectory, Path.GetFileName(xmlPath)));
+                File.Copy(xmlPath, Path.Combine(AppContext.BaseDirectory, Path.GetFileName(xmlPath)));
             }
         }
     }

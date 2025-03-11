@@ -1,8 +1,8 @@
-﻿using MarBasBrokerSQLCommon;
+﻿using CraftedSolutions.MarBasBrokerSQLCommon;
 
-namespace MarBasBrokerEnginePgSQL
+namespace CraftedSolutions.MarBasBrokerEnginePgSQL
 {
-    public sealed class PgSQLDialect: ISQLDialect
+    public sealed class PgSQLDialect : ISQLDialect
     {
         public string SubsrringFunc => "substring";
 

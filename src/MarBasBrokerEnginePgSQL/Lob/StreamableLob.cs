@@ -1,9 +1,9 @@
 using System.Data;
-using MarBasBrokerSQLCommon.Lob;
-using MarBasSchema.IO;
+using CraftedSolutions.MarBasBrokerSQLCommon.Lob;
+using CraftedSolutions.MarBasSchema.IO;
 using Npgsql;
 
-namespace MarBasBrokerEnginePgSQL.Lob
+namespace CraftedSolutions.MarBasBrokerEnginePgSQL.Lob
 {
     internal sealed class StreamableLob : StreamableContent, IAsyncStreamableContent
     {
@@ -70,7 +70,7 @@ namespace MarBasBrokerEnginePgSQL.Lob
             {
                 if (disposing)
                 {
-                     _stream?.Dispose();
+                    _stream?.Dispose();
                     var conn = _transaction?.Connection;
                     _transaction?.Dispose();
                     _context?.Dispose();

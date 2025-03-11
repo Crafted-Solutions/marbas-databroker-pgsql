@@ -2,11 +2,25 @@
 <Project>
     <PropertyGroup>
         <Product>MarBas Databroker (PostgreSQL Engine)</Product>
-        <Company>MarBas</Company>
+        <Company>CraftedSolutions</Company>
         <Copyright>© 2024</Copyright>
+    </PropertyGroup>
+    <PropertyGroup>
         <PackageProjectUrl>https://github.com/orgs/Crafted-Solutions/projects/1</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Crafted-Solutions/marbas-databroker-pgsql</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Authors>marbasteam</Authors>
+        <PackageId>$(Company).$(AssemblyName)</PackageId>
+        <PackageIcon>marbas.png</PackageIcon>
     </PropertyGroup>
+    <PropertyGroup Condition="Exists('readme.md')">
+        <PackageReadmeFile>readme.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)doc/marbas.png" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+    <ItemGroup Condition="Exists('readme.md')">
+        <None Include="readme.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
 </Project>
