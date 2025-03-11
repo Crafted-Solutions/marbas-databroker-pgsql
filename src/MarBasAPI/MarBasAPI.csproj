@@ -4,30 +4,30 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Version>0.1.16</Version>
+        <Version>0.1.16.1</Version>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <Description>Sample Web API application for MarBas databroker</Description>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <Optimize>False</Optimize>
-      <NoWarn>1591;1701;1702</NoWarn>
+        <Optimize>False</Optimize>
+        <NoWarn>1591;1701;1702</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <Optimize>True</Optimize>
-      <NoWarn>1591;1701;1702</NoWarn>
+        <Optimize>True</Optimize>
+        <NoWarn>1591;1701;1702</NoWarn>
     </PropertyGroup>
 
-   <ItemGroup>
-    <PackageReference Include="MarBasAPICore" Version="0.1.16" />
-    <PackageReference Include="NuGet.Configuration" Version="6.12.1" />
-  </ItemGroup>
-
-   <ItemGroup>
-     <ProjectReference Include="../MarBasBrokerEnginePgSQL/MarBasBrokerEnginePgSQL.csproj" />
-   </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="CraftedSolutions.MarBasAPICore" Version="0.1.16.1" />
+        <PackageReference Include="NuGet.Configuration" Version="6.13.2" />
+    </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\" />
+        <ProjectReference Include="../MarBasBrokerEnginePgSQL/MarBasBrokerEnginePgSQL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="wwwroot\" />
     </ItemGroup>
 
 </Project>

@@ -66,7 +66,7 @@ namespace MarBasBrokerPgSQLGenTests
                     var gitResp = RunGitCommand("branch --sort=-authordate");
                     if (0 != gitResp.Item1)
                     {
-                        throw new InternalTestFailureException($"Git returned error {gitResp.Item1} ({gitResp.Item2})");
+                        throw new AssertFailedException($"Git returned error {gitResp.Item1} ({gitResp.Item2})");
                     }
                     var lines = gitResp.Item2.Split(
                         new string[] { "\r\n", "\r", "\n" },
@@ -117,7 +117,7 @@ namespace MarBasBrokerPgSQLGenTests
                     }
                     else if (0 < gitResp.Item2.Length)
                     {
-                        throw new InternalTestFailureException($"Git returned error {gitResp.Item1} ({gitResp.Item2})");
+                        throw new AssertFailedException($"Git returned error {gitResp.Item1} ({gitResp.Item2})");
                     }
                 }
                 int longest = 0;

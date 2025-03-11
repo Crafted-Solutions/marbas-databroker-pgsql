@@ -1,0 +1,36 @@
+
+name: Publish Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+
+  publish:
+    name: Build and Publish Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    # - name: Verify commit exists in origin/main
+    #   run: |
+    #     git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+    #     git branch --remote --contains | grep origin/main
+    - name: Set VERSION variable from tag
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+    - name: Build
+      run: dotnet build -c Release /p:Version=${VERSION}
+    - name: Test
+      run: dotnet test -c Release /p:Version=${VERSION} --no-build
+    - name: Pack
+      run: dotnet pack -c Release /p:Version=${VERSION} --no-build --output .
+    - name: Push
+      run: dotnet nuget push "*.nupkg" -s https://api.nuget.org/v3/index.json -k ${NUGET_TOKEN} --skip-duplicate
+      env:
+        NUGET_TOKEN: ${{ secrets.CRAFTED_SOLUTIONS_NUGET_PUBLISH_TOKEN }}

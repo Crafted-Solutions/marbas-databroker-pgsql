@@ -1,11 +1,11 @@
 using System.Data.Common;
-using MarBasBrokerEnginePgSQL.Lob;
-using MarBasBrokerSQLCommon;
-using MarBasBrokerSQLCommon.GrainTier;
-using MarBasSchema.GrainTier;
-using MarBasSchema.IO;
+using CraftedSolutions.MarBasBrokerEnginePgSQL.Lob;
+using CraftedSolutions.MarBasBrokerSQLCommon;
+using CraftedSolutions.MarBasBrokerSQLCommon.GrainTier;
+using CraftedSolutions.MarBasSchema.GrainTier;
+using CraftedSolutions.MarBasSchema.IO;
 
-namespace MarBasBrokerEnginePgSQL.GrainTier
+namespace CraftedSolutions.MarBasBrokerEnginePgSQL.GrainTier
 {
     internal sealed class GrainFileDataAdapter : GrainFileInlineDataAdapter
     {

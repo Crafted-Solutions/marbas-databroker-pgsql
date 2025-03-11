@@ -1,9 +1,9 @@
-﻿using MarBasBrokerSQLCommon;
+﻿using CraftedSolutions.MarBasBrokerSQLCommon;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 
-namespace MarBasBrokerEnginePgSQL
+namespace CraftedSolutions.MarBasBrokerEnginePgSQL
 {
     public sealed class PgSQLProfile : SQLBrokerProfile<NpgsqlConnection, NpgsqlConnectionStringBuilder>
     {
