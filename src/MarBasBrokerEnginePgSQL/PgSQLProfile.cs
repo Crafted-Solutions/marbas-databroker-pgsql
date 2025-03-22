@@ -7,7 +7,7 @@ namespace CraftedSolutions.MarBasBrokerEnginePgSQL
 {
     public sealed class PgSQLProfile : SQLBrokerProfile<NpgsqlConnection, NpgsqlConnectionStringBuilder>
     {
-        public static readonly Version SchemaVersion = new(0, 1, 14);
+        public static readonly Version SchemaVersion = new(0, 1, 15);
 
         public PgSQLProfile(IConfiguration configuration, ILogger<PgSQLProfile> logger)
             : base(configuration, logger)

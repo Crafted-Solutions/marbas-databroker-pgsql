@@ -1,7 +1,5 @@
 using CraftedSolutions.MarBasAPICore.Extensions;
-using CraftedSolutions.MarBasAPICore.Http;
 using CraftedSolutions.MarBasAPICore.Routing;
-using Microsoft.AspNetCore.Authentication;
 using NuGet.Configuration;
 
 namespace CraftedSolutions.MarBasAPI
@@ -29,14 +27,11 @@ namespace CraftedSolutions.MarBasAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             DeployAPIDocsIdNeeded(bootstrapLogger);
-            builder.Services.ConfigureMarBasSwagger(builder.Environment.IsDevelopment(), options =>
+            builder.Services.ConfigureMarBasSwagger(builder.Configuration, options =>
             {
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{nameof(MarBasAPI)}.xml"));
             });
-            if (builder.Environment.IsDevelopment())
-            {
-                builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, DevelBasicAuthHandler>("BasicAuthentication", null);
-            }
+            builder.Services.ConfigureMarBasAuthentication(builder.Configuration.GetSection("Auth"));
             builder.Services.AddHttpContextAccessor();
 
             var corsEnabled = builder.Services.ConfigureCors(builder.Configuration.GetSection("Cors"), bootstrapLogger);
