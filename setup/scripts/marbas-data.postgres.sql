@@ -1,4 +1,4 @@
-INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.14');
+INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.15');
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.mtime', to_char(now()::timestamp at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"'));
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.status', 'stable');
 INSERT INTO mb_schema_opts (name, val) VALUES ('instace.id', CAST(gen_random_uuid() as text));
@@ -31,6 +31,7 @@ INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES 
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-00000000000e', '00000000-0000-1000-a000-000000000003', NULL, 'Trashbin', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('00000000-0000-1000-a000-00000000000b', '00000000-0000-1000-a000-000000000003', NULL, 'TextWithImage');
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-000000000003', NULL, 'SimpleText');
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('00000000-0000-1000-a000-00000000000f', '00000000-0000-1000-a000-000000000003', NULL, 'Link');
 
 INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-000000000004', 'MarBasSchema.Spec.GrainElement');
 INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-000000000005', 'MarBasSchema.Spec.GrainContainer');
@@ -39,6 +40,7 @@ INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-00000000
 INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-00000000000b', NULL);
 INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-00000000000c', NULL);
 INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-00000000000e', NULL);
+INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-00000000000f', NULL);
 
 UPDATE mb_grain_base SET typedef_id = '00000000-0000-1000-a000-000000000005' WHERE id IN ('00000000-0000-1000-a000-000000000001', '00000000-0000-1000-a000-000000000002', '00000000-0000-1000-a000-000000000003');
 
@@ -52,16 +54,23 @@ INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('c1fd9974-12
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('50cda8ab-23af-4ee2-b77e-4f6154b59357', '00000000-0000-1000-a000-000000000008', '00000000-0000-1000-a000-00000000000a', 'marbas.png');
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000011', '00000000-0000-1000-a000-000000000002', '00000000-0000-1000-a000-00000000000e', 'Trash', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000007', '00000000-0000-1000-a000-000000000002', '00000000-0000-1000-a000-000000000005', 'UserDefined', 0x1000);
-INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('4f3cf6bf-89fe-43aa-8ac5-0068be6d9e3a', '00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-000000000009', 'Title');
-INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('557a4274-9c24-4b38-91c2-b6603b3647d9', '00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-000000000009', 'Body');
-INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('e8b87a2d-4154-4f37-b16d-f8781870ad84', '00000000-0000-1000-a000-00000000000b', '00000000-0000-1000-a000-000000000009', 'Image');
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, sort_key) VALUES ('4f3cf6bf-89fe-43aa-8ac5-0068be6d9e3a', '00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-000000000009', 'Title', '100');
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, sort_key) VALUES ('557a4274-9c24-4b38-91c2-b6603b3647d9', '00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-000000000009', 'Body', '200');
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, sort_key) VALUES ('e8b87a2d-4154-4f37-b16d-f8781870ad84', '00000000-0000-1000-a000-00000000000b', '00000000-0000-1000-a000-000000000009', 'Image', '300');
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('3beed4d5-593e-44ad-a5fe-bb77b61580fb', '00000000-0000-1000-a000-000000000009', '00000000-0000-1000-a000-000000000005', 'Property Description', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-00000000000d', '3beed4d5-593e-44ad-a5fe-bb77b61580fb', '00000000-0000-1000-a000-000000000009', 'Comment', 0x1000);
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000012', '00000000-0000-1000-a000-00000000000f', '00000000-0000-1000-a000-000000000009', 'LinkTarget', 0x1000);
 
 INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000006', 'de', 'Inhalt');
 INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000008', 'de', 'Dateien');
 INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000007', 'en', 'User Defined');
 INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000007', 'de', 'Benutzerdefiniert');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000010', 'en', 'Trash (Content)');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000010', 'de', 'Ausschuss (Inhalte)');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000011', 'en', 'Trash (Schema)');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000011', 'de', 'Ausschuss (Schema)');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000012', 'en', 'Link Target');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000012', 'de', 'Verknüpfungsziel');
 
 /* Data for table mb_typedef_mixin */
 INSERT INTO mb_typedef_mixin (base_typedef_id, derived_typedef_id) VALUES ('00000000-0000-1000-a000-000000000005', '00000000-0000-1000-a000-00000000000e');
@@ -70,8 +79,9 @@ INSERT INTO mb_typedef_mixin (base_typedef_id, derived_typedef_id) VALUES ('0000
 /* Data for table mb_propdef */
 INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('4f3cf6bf-89fe-43aa-8ac5-0068be6d9e3a', 'text', 1, 1, TRUE);
 INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('557a4274-9c24-4b38-91c2-b6603b3647d9', 'memo', 1, 1, TRUE);
-INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('e8b87a2d-4154-4f37-b16d-f8781870ad84', 'file', 1, 1, FALSE);
-INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('00000000-0000-1000-a000-00000000000d', 'text', 1, 1, TRUE);
+INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('e8b87a2d-4154-4f37-b16d-f8781870ad84', 'file', 0, 1, FALSE);
+INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('00000000-0000-1000-a000-00000000000d', 'text', 0, 1, TRUE);
+INSERT INTO mb_propdef (base_id, value_type, cardinality_min, cardinality_max, localizable) VALUES ('00000000-0000-1000-a000-000000000012', 'grain', 1, 1, FALSE);
 
 /* Data for table mb_grain_trait */
 INSERT INTO mb_grain_trait (id, grain_id, propdef_id, lang_code, ord, val_boolean, val_text, val_number, val_memo, val_guid) VALUES ('ce1d23e8-1ed6-4837-8ecc-35694513a7eb', 'f5a20495-400d-4584-b75f-211500026b0b', '557a4274-9c24-4b38-91c2-b6603b3647d9', 'en', 0, FALSE, NULL, NULL, 'Sed sit amet mi dignissim, interdum ligula in, viverra magna. Vivamus ac enim eu odio volutpat porttitor non sit amet nibh. Morbi id lectus nibh. Quisque ut quam ut sapien volutpat commodo eu sed augue. Donec varius ipsum mi, at finibus felis mattis vitae. Nunc accumsan eros nec nisi pretium, quis facilisis enim suscipit. Donec nisi libero, auctor ac congue et, congue eget ipsum. Aenean bibendum tempus tortor vel pellentesque. Fusce vel pharetra diam, sit amet ullamcorper arcu. Nullam auctor velit eu sem mollis, id facilisis leo facilisis. Donec id leo ac mi lacinia commodo et et nunc. Ut luctus diam eget nibh molestie, et dictum lorem consequat. ', NULL);

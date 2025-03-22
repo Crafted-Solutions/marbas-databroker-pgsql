@@ -4,12 +4,35 @@ name: Publish Release
 on:
   release:
     types: [published]
+env:
+    PROJECT_NAME: MarBasAPI
+    PACKAGE_SUFFIX: '-pgsql'
 
 jobs:
 
   publish:
     name: Build and Publish Release
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        kind: ['portable', 'linux', 'windows', 'macOS', 'macOSIntel']
+        include:
+          - kind: portable
+            os: ubuntu-latest
+            target: portable
+          - kind: linux
+            os: ubuntu-latest
+            target: linux-x64
+          - kind: windows
+            os: windows-latest
+            target: win-x64
+          - kind: macOS
+            os: macos-latest
+            target: osx-arm64
+          - kind: macOSIntel
+            os: macos-latest
+            target: osx-x64
+
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
 
     steps:
@@ -23,14 +46,39 @@ jobs:
     #     git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
     #     git branch --remote --contains | grep origin/main
     - name: Set VERSION variable from tag
+      shell: bash
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+
     - name: Build
       run: dotnet build -c Release /p:Version=${VERSION}
+      if: matrix.kind == 'portable'
     - name: Test
       run: dotnet test -c Release /p:Version=${VERSION} --no-build
+      if: matrix.kind == 'portable'
     - name: Pack
       run: dotnet pack -c Release /p:Version=${VERSION} --no-build --output .
-    - name: Push
+      if: matrix.kind == 'portable'
+    - name: Push NuGet
       run: dotnet nuget push "*.nupkg" -s https://api.nuget.org/v3/index.json -k ${NUGET_TOKEN} --skip-duplicate
+      if: matrix.kind == 'portable'
       env:
         NUGET_TOKEN: ${{ secrets.CRAFTED_SOLUTIONS_NUGET_PUBLISH_TOKEN }}
+
+    - name: Build Binaries
+      shell: bash
+      run: |
+        dotnet publish src/${PROJECT_NAME}/${PROJECT_NAME}.csproj -p:PublishProfile=${{ matrix.target }} -p:Version=${VERSION} -p:DebugSymbols=False -p:DebugType=None
+
+        if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            7z a -tzip "${PROJECT_NAME}${PACKAGE_SUFFIX}-${VERSION}-${{ matrix.target }}.zip" "./distr/${{ matrix.target }}/*"
+        else
+            tar czvf "${PROJECT_NAME}${PACKAGE_SUFFIX}-${VERSION}-${{ matrix.target }}.tar.gz" -C "./distr/${{ matrix.target }}" .
+        fi
+
+    - name: Publish Binaries to GitHub
+      uses: softprops/action-gh-release@v2
+      with:
+        files: "${{ env.PROJECT_NAME }}${{ env.PACKAGE_SUFFIX }}-${{ env.VERSION }}-*"
+      env:
+        GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+
