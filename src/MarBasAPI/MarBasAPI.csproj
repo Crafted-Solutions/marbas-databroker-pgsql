@@ -18,7 +18,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CraftedSolutions.MarBasAPICore" Version="0.1.17-dev01" />
+        <PackageReference Include="CraftedSolutions.MarBasAPICore" Version="0.1.17" />
         <PackageReference Include="NuGet.Configuration" Version="6.13.2" />
     </ItemGroup>
 

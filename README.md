@@ -71,7 +71,7 @@ ASPNETCORE_URLS=https://localhost:7277
 ### Example Use
 ```sh
 curl -u reader:b "https://localhost:7277/api/marbas/Tree/**"
-curl -u reader:b "https://localhost:7277/api/Role/Current"
+curl -u reader:b "https://localhost:7277/api/marbas/Role/Current"
 ```
 
 
