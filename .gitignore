@@ -11,6 +11,7 @@
 *.user
 MarBasBrokerEnginesDebug.sln
 /srcdbg
+/distr
 
 .fake
 .DS_Store
