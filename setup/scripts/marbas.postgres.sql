@@ -133,13 +133,14 @@ CREATE TRIGGER mb_tg_grain_base_mtime
   FOR EACH ROW
 EXECUTE PROCEDURE mb_set_grain_base_mtime();
 
-CREATE OR REPLACE FUNCTION mb_update_grain_base_parent()
+CREATE OR REPLACE FUNCTION mb_modify_grain_base()
 	RETURNS TRIGGER
 	LANGUAGE plpgsql
-	AS $mb_update_grain_base_parent$
+	AS $mb_modify_grain_base$
 BEGIN
 	IF TG_OP = 'DELETE' THEN
 		UPDATE mb_grain_base SET child_count = (SELECT COUNT(id) FROM mb_grain_base WHERE parent_id = old.parent_id) WHERE id = old.parent_id;
+        DELETE FROM mb_grain_trait WHERE val_guid = old.id;
 		RETURN old;
 	ELSIF TG_OP = 'INSERT' THEN
 		UPDATE mb_grain_base SET child_count = (SELECT COUNT(id) FROM mb_grain_base WHERE parent_id = new.parent_id) WHERE id = new.parent_id;
@@ -150,26 +151,26 @@ BEGIN
 		RETURN new;
 	END IF;
 END;
-$mb_update_grain_base_parent$;
+$mb_modify_grain_base$;
 
 CREATE OR REPLACE TRIGGER mb_tg_grain_base_insert_parent_update
     AFTER INSERT
     ON mb_grain_base
     FOR EACH ROW
-EXECUTE FUNCTION mb_update_grain_base_parent();
+EXECUTE FUNCTION mb_modify_grain_base();
 
 CREATE OR REPLACE TRIGGER mb_tg_grain_base_delete_parent_update
     AFTER DELETE
     ON mb_grain_base
     FOR EACH ROW
-EXECUTE FUNCTION mb_update_grain_base_parent();
+EXECUTE FUNCTION mb_modify_grain_base();
 
 CREATE OR REPLACE TRIGGER mb_tg_grain_base_update_parent_update
     AFTER UPDATE OF parent_id
     ON mb_grain_base
     FOR EACH ROW
     WHEN (new.parent_id IS DISTINCT FROM old.parent_id)
-EXECUTE FUNCTION mb_update_grain_base_parent();
+EXECUTE FUNCTION mb_modify_grain_base();
 
 CREATE OR REPLACE FUNCTION mb_ignore_typedef_defaults_duplicates()
 	RETURNS TRIGGER
@@ -481,6 +482,26 @@ CREATE INDEX mb_fki_grain_trait_grain
 CREATE INDEX mb_fki_grain_trait_propdef
   ON mb_grain_trait
   (propdef_id);
+
+CREATE INDEX mb_idx_grain_trait_boolean
+  ON mb_grain_trait
+  (val_boolean);
+
+CREATE INDEX mb_idx_grain_trait_text
+  ON mb_grain_trait
+  (val_text);
+
+CREATE INDEX mb_idx_grain_trait_number
+  ON mb_grain_trait
+  (val_number);
+
+CREATE INDEX mb_idx_grain_trait_guid
+  ON mb_grain_trait
+  (val_guid);
+  
+CREATE INDEX mb_idx_grain_trait_memo
+  ON mb_grain_trait
+  (substring(val_memo, 0, 1000));
   
 CREATE UNIQUE INDEX mb_idx_grain_trait_propdef
   ON mb_grain_trait
@@ -578,8 +599,10 @@ BEGIN
     IF EXISTS (SELECT 1 FROM mb_grain_base WHERE id = new.grain_id AND name = new.label) THEN
         IF TG_OP = 'UPDATE' THEN
             DELETE FROM mb_grain_label WHERE grain_id = new.grain_id AND lang_code = new.lang_code;
+            RETURN null;
+        ELSIF TG_OP = 'INSERT' AND NOT EXISTS(SELECT 1 FROM mb_grain_label WHERE grain_id = new.grain_id AND lang_code = new.lang_code) THEN
+            RETURN null;
         END IF;
-        RETURN null;
     END IF;
     RETURN new;
 END;
