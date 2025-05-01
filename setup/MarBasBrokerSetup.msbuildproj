@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/3.0.4">
   <PropertyGroup>
     <ProjectTypeGuids>{8A007CE0-59FE-420B-96A7-B0308DBB7B90}</ProjectTypeGuids>
-    <Version>0.1.17</Version>
+    <Version>0.1.18</Version>
       <SkipResolvePackageAssets>true</SkipResolvePackageAssets>
       <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
@@ -11,22 +11,6 @@
     <None Include="db.env" />
     <None Include="docker-compose.yml" />
     <None Include="docker-init\run-scripts.sh" />
-    <None Include="scripts\create-db.cmd" />
-    <None Include="scripts\create-db.sh" />
-    <None Include="scripts\marbas-data.postgres.sql" />
-    <None Include="scripts\marbas-logo.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.10.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.11.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.12.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.13.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.14.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.15.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.7.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.8.postgres.sql" />
-    <None Include="scripts\marbas-patch-0.1.9.postgres.sql" />
-    <None Include="scripts\marbas-pw.postgres.sql" />
-    <None Include="scripts\marbas.postgres.sql" />
-    <None Include="scripts\setup-db.cmd" />
-    <None Include="scripts\setup-db.sh" />
+    <None Include="scripts\*" />
   </ItemGroup>
 </Project>
