@@ -88,6 +88,20 @@ EXECUTE FUNCTION mb_modify_grain_base();
 
 DROP FUNCTION mb_update_grain_base_parent;
 
+DROP VIEW mb_grain_trait_with_meta;
+
+CREATE VIEW mb_grain_trait_with_meta
+AS
+SELECT p.*, a.path, b.name,
+    d.value_type, d.cardinality_min, d.cardinality_max, d.value_constraint, d.localizable, d.versionable
+    FROM mb_grain_trait AS p
+LEFT JOIN mb_grain_with_path AS a
+    ON a.id = p.grain_id
+LEFT JOIN mb_grain_base AS b
+    ON b.id = p.propdef_id
+LEFT JOIN mb_propdef AS d
+    ON d.base_id = p.propdef_id;
+
 UPDATE mb_schema_opts SET val = '0.1.16' WHERE name = 'schema.version';
 UPDATE mb_schema_opts SET val = to_char(now()::timestamp at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"') WHERE name = 'schema.mtime';
     
