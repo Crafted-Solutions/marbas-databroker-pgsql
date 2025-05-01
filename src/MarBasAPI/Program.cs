@@ -60,13 +60,13 @@ namespace CraftedSolutions.MarBasAPI
             {
                 app.UseCors();
             }
-            app.UseAuthentication();
-            app.UseAuthorization();
 
             if (builder.Configuration.GetValue("StaticFiles:Enabled", false))
             {
                 app.UseStaticFiles();
             }
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.MapControllers();
 
