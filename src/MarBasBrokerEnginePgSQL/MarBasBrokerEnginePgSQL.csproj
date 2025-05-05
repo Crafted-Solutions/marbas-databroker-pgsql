@@ -5,7 +5,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.1.18</Version>
+        <Version>0.1.18.1</Version>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <Description>PostgreSQL databroker engine for MarBas</Description>
     </PropertyGroup>
@@ -19,7 +19,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CraftedSolutions.MarBasBrokerSQLCommon" Version="0.1.18" />
+        <PackageReference Include="CraftedSolutions.MarBasBrokerSQLCommon" Version="0.1.18.1" />
         <PackageReference Include="Npgsql" Version="9.0.3" />
     </ItemGroup>
 
