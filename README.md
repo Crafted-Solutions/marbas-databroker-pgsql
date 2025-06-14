@@ -74,6 +74,25 @@ curl -u reader:b "https://localhost:7277/api/marbas/Tree/**"
 curl -u reader:b "https://localhost:7277/api/marbas/Role/Current"
 ```
 
+## Configuration
+Like other ASP.Net applications configuration options are stored in `appsettings.json` and resp. `appsettings.<ASPNETCORE_ENVIRONMENT>.json` files in the working directory. Most of the options are a subset of standard .Net settings and should only be changed by experienced developers. Only settings specific to this broker variant are described here, for common options, s. https://github.com/Crafted-Solutions/marbas-databroker?tab=readme-ov-file#configuration.
+
+### Configuration: BrokerProfile
+In this section DB profile is configured, available options are dependent from actual DB backend used - this version uses PostgreSQL database.
+- `BrokerProfile:Host` - **default: `db-devel.marbas.local`** host name where a DB instance is running.
+- `BrokerProfile:Port` - **default: `5432`** network port of DB instance.
+- `BrokerProfile:Database` - **default: `marbas`** DB name to connect to.
+- `BrokerProfile:Username` - **default: `marbas`** user name used to authenticate to DB.
+- `BrokerProfile:Password` - **default: `marbas`** password used to authenticate to DB.
+- `BrokerProfile:Pooling` - **default: `true`** if `false` connection pooling is off.
+- `BrokerProfile:SslMode` - **default: `2`** SSL mode for PostgreSQL connections, can be one of the following
+    1. 0 - Disable
+    1. 1 - Allow
+    1. 2 - Prefer
+    1. 3 - Require
+    1. 4 - VerifyCA
+    1. 5 - VerifyFull
+
 
 ## Contributing
 All contributions to development and error fixing are welcome. Please always use `develop` branch for forks and pull requests, `main` is reserved for stable releases and critical vulnarability fixes only. 
