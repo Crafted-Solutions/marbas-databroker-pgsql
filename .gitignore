@@ -4,6 +4,7 @@
 
 /.vs
 /build
+/src/MarBasAPI/authsettings.*
 /src/MarBasAPI/Data/*
 !/src/MarBasAPI/Data/.gitkeep
 /src/MarBasAPI/wwwroot/*
