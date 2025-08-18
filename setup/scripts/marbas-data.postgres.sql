@@ -1,4 +1,4 @@
-INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.16');
+INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.17');
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.mtime', to_char(now()::timestamp at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"'));
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.status', 'stable');
 INSERT INTO mb_schema_opts (name, val) VALUES ('instace.id', CAST(gen_random_uuid() as text));
@@ -116,6 +116,7 @@ INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restricti
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Developer@marbas'), '00000000-0000-1000-a000-000000000000', true, -1, 0);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Schema_Manager@marbas'), '00000000-0000-1000-a000-000000000000', true, 0x001 | 0x002 | 0x004 | 0x008 | 0x010 | 0x020, 0);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Contributor@marbas'), '00000000-0000-1000-a000-000000000000', true, 0x001 | 0x020, 0);
+INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Consumer@marbas'), '00000000-0000-1000-a000-000000000000', true, 0x001, 0);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Everyone@marbas'), '00000000-0000-1000-a000-000000000001', false, 0x001, 0);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Superuser@marbas'), '00000000-0000-1000-a000-000000000001', false, -1, 0);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Schema_Manager@marbas'), '00000000-0000-1000-a000-000000000001', false, 0x001 | 0x002 | 0x010, 0x004 | 0x008 | 0x100 | 0x200 | 0x400);
@@ -123,5 +124,4 @@ INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restricti
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Contributor@marbas'), '00000000-0000-1000-a000-000000000002', false, 0, -1);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Contributor@marbas'), '00000000-0000-1000-a000-000000000006', true, 0x001 | 0x002 | 0x004 | 0x010 | 0x400, 0);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Contributor@marbas'), '00000000-0000-1000-a000-000000000008', true, 0x001 | 0x002 | 0x004 | 0x010 | 0x400, 0);
-INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Consumer@marbas'), '00000000-0000-1000-a000-000000000006', true, 0x001, 0);
-INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Consumer@marbas'), '00000000-0000-1000-a000-000000000008', true, 0x001, 0);
+INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Consumer@marbas'), '00000000-0000-1000-a000-000000000002', false, 0, -1);
