@@ -7,7 +7,7 @@ namespace CraftedSolutions.MarBasAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -20,9 +20,9 @@ namespace CraftedSolutions.MarBasAPI
                 options.ConstraintMap.Add("DownloadDisposition", typeof(DownloadDispositionRouteConstraint));
             });
 
-            using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder.AddConfiguration(
-                builder.Configuration.GetSection("Logging")).AddConsole().AddDebug().AddEventSourceLogger()
-                );
+            builder.ConfigureTraceFileLogging();
+
+            using var loggerFactory = builder.GetBootstrapLoggerFactory();
             var bootstrapLogger = loggerFactory.CreateLogger<Program>();
 
             builder.Services.ConfigureMarBasTimeouts(builder.Configuration.GetSection("RequestTimeouts"));
@@ -54,7 +54,7 @@ namespace CraftedSolutions.MarBasAPI
                 app.ConfigureMarBasSwaggerUI(builder.Configuration);
             }
 
-            app.UseHttpsRedirection();
+            app.ConfigureHttpsRedirection();
 
             if (corsEnabled)
             {
@@ -70,7 +70,7 @@ namespace CraftedSolutions.MarBasAPI
 
             app.MapControllers();
 
-            app.Run();
+            await app.RunAsync();
         }
 
         private static void DeployAPIDocsIdNeeded(ILogger logger)
@@ -99,7 +99,7 @@ namespace CraftedSolutions.MarBasAPI
                 pkgPath = Path.Combine(nugetPath, pkgDir, string.Join(".", verParts));
                 verParts.RemoveAt(verParts.Count - 1);
             }
-            while (verParts.Any() && !Directory.Exists(pkgPath));
+            while (0 == verParts.Count && !Directory.Exists(pkgPath));
             if (!Directory.Exists(pkgPath))
             {
                 logger.LogError("Cannot find package at {pkgPath}", pkgPath);

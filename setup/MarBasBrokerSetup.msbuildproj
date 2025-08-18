@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/3.0.4">
   <PropertyGroup>
     <ProjectTypeGuids>{8A007CE0-59FE-420B-96A7-B0308DBB7B90}</ProjectTypeGuids>
-    <Version>0.1.18.1</Version>
+    <Version>0.1.20</Version>
       <SkipResolvePackageAssets>true</SkipResolvePackageAssets>
       <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
