@@ -41,7 +41,7 @@ namespace MarBasBrokerPgSQLGenTests
                         }
                     }
                 }
-                Assert.IsTrue(0 < prjChecked, "No CSPROJ files found in solution");
+                Assert.IsGreaterThan(0, prjChecked, "No CSPROJ files found in solution");
             }
         }
 
@@ -57,7 +57,7 @@ namespace MarBasBrokerPgSQLGenTests
 
         private class GitHelper
         {
-            private readonly IList<BranchNode> _branches = new List<BranchNode>();
+            private readonly List<BranchNode> _branches = [];
 
             public IEnumerable<Branch> ListBranches()
             {
@@ -69,7 +69,7 @@ namespace MarBasBrokerPgSQLGenTests
                         throw new AssertFailedException($"Git returned error {gitResp.Item1} ({gitResp.Item2})");
                     }
                     var lines = gitResp.Item2.Split(
-                        new string[] { "\r\n", "\r", "\n" },
+                        ["\r\n", "\r", "\n"],
                         StringSplitOptions.None
                     );
                     foreach (var line in lines.Where(x => 0 < x.Length))
@@ -104,9 +104,9 @@ namespace MarBasBrokerPgSQLGenTests
             private int LoadBranchAncestors(BranchNode node, BranchNode? contextNode = null)
             {
                 var ancestors = new List<BranchNode>();
-                foreach(var branch in _branches)
+                foreach (var branch in _branches)
                 {
-                    if (node == branch || (null != contextNode && contextNode == branch))
+                    if (node == branch || null != contextNode && contextNode == branch)
                     {
                         continue;
                     }
@@ -121,7 +121,7 @@ namespace MarBasBrokerPgSQLGenTests
                     }
                 }
                 int longest = 0;
-                foreach(var branch in ancestors)
+                foreach (var branch in ancestors)
                 {
                     int parentPathLen = LoadBranchAncestors(branch, node);
                     if (longest <= parentPathLen)
@@ -170,7 +170,7 @@ namespace MarBasBrokerPgSQLGenTests
             public bool IsCurrent { get; set; }
         }
 
-        private class BranchNode: Branch
+        private class BranchNode : Branch
         {
             public BranchNode? Parent { get; set; }
             public bool IsParentLoaded { get; set; }

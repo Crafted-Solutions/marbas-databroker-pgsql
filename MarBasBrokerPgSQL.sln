@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarBasBrokerPgSQLGenTests", "test\MarBasBrokerPgSQLGenTests\MarBasBrokerPgSQLGenTests.csproj", "{488AFC09-E7D8-4736-85A9-4CDCD9ED0A78}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{7A5FE53F-3241-421B-9137-FAD989476913}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
@@ -23,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{7A5FE5
 	EndProjectSection
 EndProject
 Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "MarBasBrokerSetup", "setup\MarBasBrokerSetup.msbuildproj", "{1BDDF328-ADE2-4B16-A31E-D6210D8C97F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarBasBrokerPgSQLGenTests", "test\MarBasBrokerPgSQLGenTests\MarBasBrokerPgSQLGenTests.csproj", "{FBEBA464-3367-4EFF-AE37-50A6B5E06BD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,12 +38,12 @@ Global
 		{B06F06F8-BE52-49F2-8026-17EC6AC1A058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B06F06F8-BE52-49F2-8026-17EC6AC1A058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B06F06F8-BE52-49F2-8026-17EC6AC1A058}.Release|Any CPU.Build.0 = Release|Any CPU
-		{488AFC09-E7D8-4736-85A9-4CDCD9ED0A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{488AFC09-E7D8-4736-85A9-4CDCD9ED0A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{488AFC09-E7D8-4736-85A9-4CDCD9ED0A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{488AFC09-E7D8-4736-85A9-4CDCD9ED0A78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1BDDF328-ADE2-4B16-A31E-D6210D8C97F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1BDDF328-ADE2-4B16-A31E-D6210D8C97F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBEBA464-3367-4EFF-AE37-50A6B5E06BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBEBA464-3367-4EFF-AE37-50A6B5E06BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBEBA464-3367-4EFF-AE37-50A6B5E06BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBEBA464-3367-4EFF-AE37-50A6B5E06BD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -44,8 +44,9 @@ namespace CraftedSolutions.MarBasAPI
             {
                 builder.Services.RegisterAsyncInitService().AddMultipleInitServices(asyncInitServices);
             }
+            builder.Services.ConfigureBackgroundQueue();
 
-            var app = builder.Build();
+            using var app = builder.Build();
             app.UseRequestTimeouts();
 
             // Configure the HTTP request pipeline.
