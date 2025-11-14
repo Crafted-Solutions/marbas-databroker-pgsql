@@ -1,4 +1,4 @@
-version: "3"
+name: marbas
 
 services:
  
@@ -12,10 +12,10 @@ services:
     volumes:
       - ./scripts:/scripts
       - ./docker-init:/docker-entrypoint-initdb.d
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql
  
   pgadmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     hostname: pgadmin
     restart: unless-stopped
     environment:
