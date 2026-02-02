@@ -45,6 +45,7 @@ INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-00000000
 UPDATE mb_grain_base SET typedef_id = '00000000-0000-1000-a000-000000000005' WHERE id IN ('00000000-0000-1000-a000-000000000001', '00000000-0000-1000-a000-000000000002', '00000000-0000-1000-a000-000000000003');
 
 /* Data for table mb_grain_base */
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000013', '00000000-0000-1000-a000-000000000003', '00000000-0000-1000-a000-000000000005', 'TypeDefSpec', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000006', '00000000-0000-1000-a000-000000000001', '00000000-0000-1000-a000-000000000005', 'Content', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000008', '00000000-0000-1000-a000-000000000001', '00000000-0000-1000-a000-000000000005', 'Files', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000010', '00000000-0000-1000-a000-000000000006', '00000000-0000-1000-a000-00000000000e', 'Trash', 0x1000);
@@ -61,6 +62,11 @@ INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES 
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-00000000000d', '3beed4d5-593e-44ad-a5fe-bb77b61580fb', '00000000-0000-1000-a000-000000000009', 'Comment', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000012', '00000000-0000-1000-a000-00000000000f', '00000000-0000-1000-a000-000000000009', 'LinkTarget', 0x1000);
 
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000013', 'en', 'Type Specification');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000013', 'de', 'Typspezifikation');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000009', 'de', 'Eigenschaft');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-00000000000a', 'de', 'Datei');
+INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-00000000000e', 'de', 'Papierkorb');
 INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000006', 'de', 'Inhalt');
 INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000008', 'de', 'Dateien');
 INSERT INTO mb_grain_label (grain_id, lang_code, label) VALUES ('00000000-0000-1000-a000-000000000007', 'en', 'User Defined');
