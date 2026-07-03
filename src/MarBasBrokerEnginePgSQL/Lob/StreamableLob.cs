@@ -5,17 +5,12 @@ using Npgsql;
 
 namespace CraftedSolutions.MarBasBrokerEnginePgSQL.Lob
 {
-    internal sealed class StreamableLob : StreamableContent, IAsyncStreamableContent
+    internal sealed class StreamableLob(IBlobContext context) : StreamableContent, IAsyncStreamableContent
     {
-        private readonly IBlobContext _context;
+        private readonly IBlobContext _context = context;
         private bool _disposed;
         private IDbTransaction? _transaction;
         private Stream? _stream;
-
-        public StreamableLob(IBlobContext context)
-        {
-            _context = context;
-        }
 
         ~StreamableLob() => Dispose(false);
 
@@ -61,7 +56,10 @@ namespace CraftedSolutions.MarBasBrokerEnginePgSQL.Lob
 
         private async Task<uint?> GetOid(CancellationToken cancellationToken)
         {
-            return (uint?)await (await _context.GetCommandAsync(cancellationToken)).ExecuteScalarAsync(cancellationToken);
+            return await _context.ExecuteOnConnection(async (cmd) =>
+            {
+                return (uint?) await cmd.ExecuteScalarAsync(cancellationToken);
+            }, cancellationToken);
         }
 
         protected override void Dispose(bool disposing)

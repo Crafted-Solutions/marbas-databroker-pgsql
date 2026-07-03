@@ -172,6 +172,24 @@ CREATE OR REPLACE TRIGGER mb_tg_grain_base_update_parent_update
     WHEN (new.parent_id IS DISTINCT FROM old.parent_id)
 EXECUTE FUNCTION mb_modify_grain_base();
 
+CREATE OR REPLACE FUNCTION mb_restrict_grain_base_delete()
+	RETURNS TRIGGER
+	LANGUAGE plpgsql
+	AS $mb_restrict_grain_base_delete$
+BEGIN
+	IF (0x1000 & old.custom_flag) > 0 THEN
+		RAISE EXCEPTION 'Protected system Grains cannot be deleted';
+	END IF;
+	RETURN old;
+END;
+$mb_restrict_grain_base_delete$;
+
+CREATE TRIGGER mb_tg_grain_base_delete_restrict
+  BEFORE DELETE
+  ON mb_grain_base
+  FOR EACH ROW
+EXECUTE PROCEDURE mb_restrict_grain_base_delete();
+
 CREATE OR REPLACE FUNCTION mb_ignore_typedef_defaults_duplicates()
 	RETURNS TRIGGER
 	LANGUAGE plpgsql
@@ -322,6 +340,24 @@ CREATE TRIGGER mb_tg_typedef_mixin_delete_mtime
   ON mb_typedef_mixin
   FOR EACH ROW
 EXECUTE PROCEDURE mb_update_typedef_derived_mtime();
+
+CREATE OR REPLACE FUNCTION mb_restrict_typedef_mixin()
+	RETURNS TRIGGER
+	LANGUAGE plpgsql
+	AS $mb_restrict_typedef_mixin$
+BEGIN
+	IF new.derived_typedef_id IN('00000000-0000-1000-a000-000000000009', '00000000-0000-1000-a000-00000000000a', '00000000-0000-1000-a000-00000000000e', '00000000-0000-1000-a000-000000000004', '00000000-0000-1000-a000-000000000005') THEN
+		RAISE EXCEPTION 'This TypeDef is not allowed as derived_typedef_id';
+	END IF;
+	RETURN new;
+END;
+$mb_restrict_typedef_mixin$;    
+
+CREATE TRIGGER mb_tg_typedef_mixin_restrict
+  BEFORE INSERT OR UPDATE
+  ON mb_typedef_mixin
+  FOR EACH ROW
+EXECUTE PROCEDURE mb_restrict_typedef_mixin();
 
 /* mb_propdef */
 CREATE TABLE mb_propdef (
