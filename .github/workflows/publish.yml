@@ -34,11 +34,15 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
+    permissions:
+        packages: write
+        contents: write
+        id-token: write
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 8.0.x
     # - name: Verify commit exists in origin/main
@@ -76,9 +80,9 @@ jobs:
         fi
 
     - name: Publish Binaries to GitHub
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         files: "${{ env.PROJECT_NAME }}${{ env.PACKAGE_SUFFIX }}-${{ env.VERSION }}-*"
       env:
-        GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+        token: ${{ secrets.PUBLISH_TOKEN }}
 

@@ -1,4 +1,4 @@
-INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.17');
+INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.20');
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.mtime', to_char(now()::timestamp at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"'));
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.status', 'stable');
 INSERT INTO mb_schema_opts (name, val) VALUES ('instace.id', CAST(gen_random_uuid() as text));
@@ -19,7 +19,7 @@ INSERT INTO mb_value_type (name) VALUES ('file');
 INSERT INTO mb_value_type (name) VALUES ('grain');
 
 /* Data for table mb_typedef */
-INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('00000000-0000-1000-a000-000000000000', NULL, NULL, '.');
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000000', NULL, NULL, '.', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000001', NULL, NULL, 'marbas', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000002', '00000000-0000-1000-a000-000000000001', NULL, 'Schema', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000003', '00000000-0000-1000-a000-000000000002', NULL, 'System', 0x1000);
@@ -29,9 +29,9 @@ INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES 
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000009', '00000000-0000-1000-a000-000000000003', NULL, 'Property', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-00000000000a', '00000000-0000-1000-a000-000000000003', NULL, 'File', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-00000000000e', '00000000-0000-1000-a000-000000000003', NULL, 'Trashbin', 0x1000);
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-00000000000f', '00000000-0000-1000-a000-000000000003', NULL, 'Link', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('00000000-0000-1000-a000-00000000000b', '00000000-0000-1000-a000-000000000003', NULL, 'TextWithImage');
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-000000000003', NULL, 'SimpleText');
-INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('00000000-0000-1000-a000-00000000000f', '00000000-0000-1000-a000-000000000003', NULL, 'Link');
 
 INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-000000000004', 'MarBasSchema.Spec.GrainElement');
 INSERT INTO mb_typedef (base_id, impl) VALUES ('00000000-0000-1000-a000-000000000005', 'MarBasSchema.Spec.GrainContainer');
