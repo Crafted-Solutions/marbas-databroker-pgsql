@@ -1,4 +1,4 @@
-INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.20');
+INSERT INTO mb_schema_opts (name, val) VALUES ('schema.version', '0.1.21');
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.mtime', to_char(now()::timestamp at time zone 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"'));
 INSERT INTO mb_schema_opts (name, val) VALUES ('schema.status', 'stable');
 INSERT INTO mb_schema_opts (name, val) VALUES ('instace.id', CAST(gen_random_uuid() as text));
@@ -54,6 +54,7 @@ INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('f5a20495-40
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('c1fd9974-1204-4c29-a721-700405983d92', '7bf1d5b2-f45a-43f8-8a08-4cb52490e47a', '00000000-0000-1000-a000-000000000004', 'Sample Compound');
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name) VALUES ('50cda8ab-23af-4ee2-b77e-4f6154b59357', '00000000-0000-1000-a000-000000000008', '00000000-0000-1000-a000-00000000000a', 'marbas.png');
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000011', '00000000-0000-1000-a000-000000000002', '00000000-0000-1000-a000-00000000000e', 'Trash', 0x1000);
+INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000014', '00000000-0000-1000-a000-000000000002', '00000000-0000-1000-a000-000000000005', '$Config$', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, custom_flag) VALUES ('00000000-0000-1000-a000-000000000007', '00000000-0000-1000-a000-000000000002', '00000000-0000-1000-a000-000000000005', 'UserDefined', 0x1000);
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, sort_key) VALUES ('4f3cf6bf-89fe-43aa-8ac5-0068be6d9e3a', '00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-000000000009', 'Title', '100');
 INSERT INTO mb_grain_base (id, parent_id, typedef_id, name, sort_key) VALUES ('557a4274-9c24-4b38-91c2-b6603b3647d9', '00000000-0000-1000-a000-00000000000c', '00000000-0000-1000-a000-000000000009', 'Body', '200');
@@ -127,6 +128,8 @@ INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restricti
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Superuser@marbas'), '00000000-0000-1000-a000-000000000001', false, -1, 0);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Schema_Manager@marbas'), '00000000-0000-1000-a000-000000000001', false, 0x001 | 0x002 | 0x010, 0x004 | 0x008 | 0x100 | 0x200 | 0x400);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Schema_Manager@marbas'), '00000000-0000-1000-a000-000000000002', true, -1, 0);
+INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Contributor@marbas'), '00000000-0000-1000-a000-000000000014', true, 0x001, 0x002 | 0x004 | 0x008 | 0x010 | 0x020 | 0x100 | 0x200 | 0x400);
+INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Consumer@marbas'), '00000000-0000-1000-a000-000000000014', true, 0x001, 0x002 | 0x004 | 0x008 | 0x010 | 0x020 | 0x100 | 0x200 | 0x400);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Contributor@marbas'), '00000000-0000-1000-a000-000000000002', false, 0, -1);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Contributor@marbas'), '00000000-0000-1000-a000-000000000006', true, 0x001 | 0x002 | 0x004 | 0x010 | 0x400, 0);
 INSERT INTO mb_grain_acl (role_id, grain_id, inherit, permission_mask, restriction_mask) VALUES ((SELECT id FROM mb_role WHERE name = 'Content_Contributor@marbas'), '00000000-0000-1000-a000-000000000008', true, 0x001 | 0x002 | 0x004 | 0x010 | 0x400, 0);
