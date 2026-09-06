@@ -226,6 +226,22 @@ CREATE TRIGGER mb_tg_grain_typedef_defaults_name
   FOR EACH ROW
 EXECUTE PROCEDURE mb_set_typedef_defaults_name();
 
+CREATE OR REPLACE FUNCTION mb_delete_typedef_defaults()
+	RETURNS TRIGGER
+	LANGUAGE plpgsql
+	AS $mb_delete_typedef_defaults$
+BEGIN
+    UPDATE mb_grain_base SET typedef_id = '00000000-0000-1000-a000-000000000004' WHERE (0x1000 & custom_flag) = 0 AND parent_id = old.id AND typedef_id = old.id;
+	RETURN old;
+END;
+$mb_delete_typedef_defaults$;
+
+CREATE TRIGGER mb_tg_grain_typedef_delete
+  BEFORE DELETE
+  ON mb_grain_base
+  FOR EACH ROW
+EXECUTE PROCEDURE mb_delete_typedef_defaults();
+
 
 CREATE TABLE mb_grain_control (
   grain_id  uuid NOT NULL PRIMARY KEY,
@@ -844,14 +860,10 @@ SELECT *
 /* mb_grain_trait_with_meta */
 CREATE VIEW mb_grain_trait_with_meta
 AS
-SELECT p.*, a.path, b.name,
+SELECT p.*, d.name, d.path AS propdef_path,
     d.value_type, d.cardinality_min, d.cardinality_max, d.value_constraint, d.localizable, d.versionable
     FROM mb_grain_trait AS p
-LEFT JOIN mb_grain_with_path AS a
-    ON a.id = p.grain_id
-LEFT JOIN mb_grain_base AS b
-    ON b.id = p.propdef_id
-LEFT JOIN mb_propdef AS d
+LEFT JOIN mb_propdef_as_grain_with_path AS d
     ON d.base_id = p.propdef_id;
     
 /* mb_typedef_as_grain_with_path */
