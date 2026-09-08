@@ -4,12 +4,12 @@
     "net8.0": {
       "CraftedSolutions.MarBasAPICore": {
         "type": "Direct",
-        "requested": "[0.1.24, )",
-        "resolved": "0.1.24",
-        "contentHash": "UJtdecHo+fqb5lhrTduxTxGp8F+ozlTWySK5JIMcmlYth9MwBr/6KhgMItlzlo+t8v8h0N7SX+XFzHq8jjVjaQ==",
+        "requested": "[0.1.24.1, )",
+        "resolved": "0.1.24.1",
+        "contentHash": "uf66gthXjvKVljXQeSo2eEBTVUQMdLKr4MMM4gkQxIvNJznuQK7/qwb5jMPSWWVJjQeJB2db+GEP2SeClcFVTA==",
         "dependencies": {
-          "CraftedSolutions.MarBasCommon": "0.1.24",
-          "CraftedSolutions.MarBasSchema": "0.1.24",
+          "CraftedSolutions.MarBasCommon": "0.1.24.1",
+          "CraftedSolutions.MarBasSchema": "0.1.24.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "[8.0.29]",
           "Swashbuckle.AspNetCore": "[9.0.6, 10.0.0)"
         }
@@ -26,29 +26,29 @@
       },
       "CraftedSolutions.MarBasBrokerSQLCommon": {
         "type": "Transitive",
-        "resolved": "0.1.24",
-        "contentHash": "tKFaPueanm83sX2C5LDrlY4memmvydnPAjlK2WBTapsXOixd/vC50fm+IAtMmDEYsmNYCon22fs1BPVUeYGVyA==",
+        "resolved": "0.1.24.1",
+        "contentHash": "iZxWq1iN/wKlRqH3cR9Ex19l+xFHkI8cTOwPAPRGkDjXxLmjEbJMiQEAP7jp3iT2LJRuybRgmpSn5g6p9K6YTA==",
         "dependencies": {
-          "CraftedSolutions.MarBasCommon": "0.1.24",
-          "CraftedSolutions.MarBasSchema": "0.1.24",
+          "CraftedSolutions.MarBasCommon": "0.1.24.1",
+          "CraftedSolutions.MarBasSchema": "0.1.24.1",
           "Microsoft.Extensions.Configuration": "10.0.10",
           "System.Linq.Async": "7.0.1"
         }
       },
       "CraftedSolutions.MarBasCommon": {
         "type": "Transitive",
-        "resolved": "0.1.24",
-        "contentHash": "YErWqBPzHHx6xoVdG4C8W9nOqmY/K6Wto5ltY+kwW8KaWSE2NP2FM+6tmWJELfGnC/WqQWAiMJ5gVzC+/yK6TA==",
+        "resolved": "0.1.24.1",
+        "contentHash": "FNEoDXo8ushKQ9eTHASpPnrJmqfWOLEtYVkR7KB0eOBjuVnwfI5jeEUUhEtwPoj+90OP8HQNkysyV5v9IcHnLA==",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "10.0.10"
         }
       },
       "CraftedSolutions.MarBasSchema": {
         "type": "Transitive",
-        "resolved": "0.1.24",
-        "contentHash": "MBenkt5kmycN6if1irAw1nS8dm4CNvHneGaRODY4/FGC6Y6jPj9K3Uevr1drxN1ngxYNB92nEFrGvzEtb9eDEw==",
+        "resolved": "0.1.24.1",
+        "contentHash": "lB1LKRBpzV4C2ZO970s9NEeWSFgw7QJWMJlE1CH+2+oLQJEtM9u9BtUuCozNha5JumbRHW7Bw4VsZdji2BknMw==",
         "dependencies": {
-          "CraftedSolutions.MarBasCommon": "0.1.24",
+          "CraftedSolutions.MarBasCommon": "0.1.24.1",
           "Microsoft.Extensions.Configuration.Abstractions": "10.0.10",
           "Microsoft.Extensions.Configuration.Binder": "10.0.10",
           "Microsoft.Extensions.DependencyModel": "10.0.10",
@@ -300,7 +300,7 @@
       "CraftedSolutions.MarBasBrokerEnginePgSQL": {
         "type": "Project",
         "dependencies": {
-          "CraftedSolutions.MarBasBrokerSQLCommon": "[0.1.24, )",
+          "CraftedSolutions.MarBasBrokerSQLCommon": "[0.1.24.1, )",
           "Npgsql": "[10.0.3, )"
         }
       }
