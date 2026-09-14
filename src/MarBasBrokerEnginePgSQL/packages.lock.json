@@ -4,12 +4,12 @@
     "net8.0": {
       "CraftedSolutions.MarBasBrokerSQLCommon": {
         "type": "Direct",
-        "requested": "[0.1.24.2, )",
-        "resolved": "0.1.24.2",
-        "contentHash": "xt+wQiVqtY7CiADEYs+wXtdFK7VXYJevQnbuxyKgLpxHaCWxIK4YRyW90o/xY0Sk+UEO5JPbuuJSVkzFHPIB7A==",
+        "requested": "[0.1.24.3, )",
+        "resolved": "0.1.24.3",
+        "contentHash": "DL8V0m2BnGAhYn/UIo3QPzVI254ZiPVtvx3hKGt/FEKj+k5KIJa+nbJLtmsuTZWvt3Xpwjekj2tM7xOwSwteig==",
         "dependencies": {
-          "CraftedSolutions.MarBasCommon": "0.1.24.2",
-          "CraftedSolutions.MarBasSchema": "0.1.24.2",
+          "CraftedSolutions.MarBasCommon": "0.1.24.3",
+          "CraftedSolutions.MarBasSchema": "0.1.24.3",
           "Microsoft.Extensions.Configuration": "10.0.10",
           "System.Linq.Async": "7.0.1"
         }
@@ -26,18 +26,18 @@
       },
       "CraftedSolutions.MarBasCommon": {
         "type": "Transitive",
-        "resolved": "0.1.24.2",
-        "contentHash": "qAYkzvMszVg/8Jr496gKfjaE0jdDhKEUa6w1KGQ5wTXYR8XvCJ1/LoT68FJHGaEUaCuexR6SFuc7EKSxXdT9mg==",
+        "resolved": "0.1.24.3",
+        "contentHash": "yBNgTzoR9DlRn4tPx98o399XNka0bolXhaiamNxrmcokPwuuWE5MR2tyzq1K9bd3VxnFsR2ns46QlwFlCTh8hg==",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "10.0.10"
         }
       },
       "CraftedSolutions.MarBasSchema": {
         "type": "Transitive",
-        "resolved": "0.1.24.2",
-        "contentHash": "OpUpmJvadC2dLirGvOQhG4lI3R2RZ8uMEAufZBQogNhN4t0kl9QT+6XdWKCNgDVDDKRcJ4Lwetf/Ju6Gfuh+5Q==",
+        "resolved": "0.1.24.3",
+        "contentHash": "/kzEswrEFaGgf1nVn11kLdDO/Qf1rvruKHUASHtkyIV6JvRpvj9GT2qeWt1NuUUHV7U8dr9WcJ7jDQHOBnNCoQ==",
         "dependencies": {
-          "CraftedSolutions.MarBasCommon": "0.1.24.2",
+          "CraftedSolutions.MarBasCommon": "0.1.24.3",
           "Microsoft.Extensions.Configuration.Abstractions": "10.0.10",
           "Microsoft.Extensions.Configuration.Binder": "10.0.10",
           "Microsoft.Extensions.DependencyModel": "10.0.10",
