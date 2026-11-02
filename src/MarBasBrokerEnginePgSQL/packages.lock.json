@@ -4,13 +4,13 @@
     "net8.0": {
       "CraftedSolutions.MarBasBrokerSQLCommon": {
         "type": "Direct",
-        "requested": "[0.1.24.3, )",
-        "resolved": "0.1.24.3",
-        "contentHash": "DL8V0m2BnGAhYn/UIo3QPzVI254ZiPVtvx3hKGt/FEKj+k5KIJa+nbJLtmsuTZWvt3Xpwjekj2tM7xOwSwteig==",
+        "requested": "[0.1.25, )",
+        "resolved": "0.1.25",
+        "contentHash": "x1HaQyAqPT8k4tWtAUbGFqEyDnZsmmfa2/kNYrxWTAW3mFFDK3yupX6WWBdPj0R1H+vq4R62AcsqPAg1ORIoXw==",
         "dependencies": {
-          "CraftedSolutions.MarBasCommon": "0.1.24.3",
-          "CraftedSolutions.MarBasSchema": "0.1.24.3",
-          "Microsoft.Extensions.Configuration": "10.0.10",
+          "CraftedSolutions.MarBasCommon": "0.1.25",
+          "CraftedSolutions.MarBasSchema": "0.1.25",
+          "Microsoft.Extensions.Configuration": "10.0.12",
           "System.Linq.Async": "7.0.1"
         }
       },
@@ -26,19 +26,19 @@
       },
       "CraftedSolutions.MarBasCommon": {
         "type": "Transitive",
-        "resolved": "0.1.24.3",
-        "contentHash": "yBNgTzoR9DlRn4tPx98o399XNka0bolXhaiamNxrmcokPwuuWE5MR2tyzq1K9bd3VxnFsR2ns46QlwFlCTh8hg==",
+        "resolved": "0.1.25",
+        "contentHash": "BHLyvyIZnhRo7LNsaRxG2ol3YOIveDG2EDDfWkNqggLZJV5J7gMrhYDm5b97u4qjmVqRY6Ibt0HTbXB7wMAJTA==",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "10.0.10"
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.12"
         }
       },
       "CraftedSolutions.MarBasSchema": {
         "type": "Transitive",
-        "resolved": "0.1.24.3",
-        "contentHash": "/kzEswrEFaGgf1nVn11kLdDO/Qf1rvruKHUASHtkyIV6JvRpvj9GT2qeWt1NuUUHV7U8dr9WcJ7jDQHOBnNCoQ==",
+        "resolved": "0.1.25",
+        "contentHash": "+bVpT+DyhtfHEywSCbOyAlS4viGG2ZepVtHdOefeO2GFAztfR45D+Md0djhgmRGmm3e8cl0ZPPRRPqALHAk3aA==",
         "dependencies": {
-          "CraftedSolutions.MarBasCommon": "0.1.24.3",
-          "Microsoft.Extensions.Configuration.Abstractions": "10.0.10",
+          "CraftedSolutions.MarBasCommon": "0.1.25",
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.12",
           "Microsoft.Extensions.Configuration.Binder": "10.0.10",
           "Microsoft.Extensions.DependencyModel": "10.0.10",
           "Microsoft.Extensions.Logging.Abstractions": "10.0.10",
@@ -47,19 +47,19 @@
       },
       "Microsoft.Extensions.Configuration": {
         "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "plJWK2zpWuuyxI8F8s2scx6Je7N1Ajjs6HvYUGKwRnDMWIVIz9FHwAkiT7ASgrvAOd10T0FPVlh9BzAJJME+jg==",
+        "resolved": "10.0.12",
+        "contentHash": "e3IPP32CRNL031VZJAUTlCTG0YN7WFh4mN3fsSHTDQCJB+3+f0jGycv4fXk3rrftaY3B85XrQaj7sRthrOsavg==",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "10.0.10",
-          "Microsoft.Extensions.Primitives": "10.0.10"
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.12",
+          "Microsoft.Extensions.Primitives": "10.0.12"
         }
       },
       "Microsoft.Extensions.Configuration.Abstractions": {
         "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "5Vnd2I75DmZCVEjSynIdJ/0EGafgnLQwgR3t2C2/fkjx/nRG+cLwxLLdInoHeCEpkD5K4Ov/g9ZCRYrl4TRsaA==",
+        "resolved": "10.0.12",
+        "contentHash": "8xaGcvS/qZ1otoxPQCEJkNva389CVL/plNcvIETZhQTETYdRkYDPEYhUMoAGONo4FU45ufdfE0j29AfWVVj0wA==",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "10.0.10"
+          "Microsoft.Extensions.Primitives": "10.0.12"
         }
       },
       "Microsoft.Extensions.Configuration.Binder": {
@@ -105,8 +105,8 @@
       },
       "Microsoft.Extensions.Primitives": {
         "type": "Transitive",
-        "resolved": "10.0.10",
-        "contentHash": "5wu/GrYVd8mG2DVUw3vFJzF+O336TyTGg/Kmcgw9bfwYhCoFiV5lR5QeEmKecJyrW4W54nMfD3p3589E8a7czQ=="
+        "resolved": "10.0.12",
+        "contentHash": "dYfCLR52UA+3DL7C4I/pvSaRPkNqxrUAQmbFL2u0zvYKKzqgrFCJl08Df+F1aYc8leu9JvpC9bsURUdpExcBXQ=="
       },
       "System.Diagnostics.DiagnosticSource": {
         "type": "Transitive",
