@@ -57,7 +57,7 @@ jobs:
       run: dotnet build -c Release /p:Version=${VERSION}
       if: matrix.kind == 'portable'
     - name: Test
-      run: dotnet test -c Release /p:Version=${VERSION} --no-build
+      run: dotnet test -c Release /p:Version=${VERSION} --no-build -p:CollectCoverage=False
       if: matrix.kind == 'portable'
     - name: Pack
       run: dotnet pack -c Release /p:Version=${VERSION} --no-build --output .
